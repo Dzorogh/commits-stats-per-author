@@ -21,9 +21,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Decrypt secrets
-        run: ./decrypt_secret.sh
-        env:
-          SECRETS_PASSPHRASE: ${{ secrets.SECRETS_PASSPHRASE }}
+      run: sh .github/secrets/decrypt_secret.sh
+      env:
+        SECRETS_PASSPHRASE: ${{ secrets.SECRETS_PASSPHRASE }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
