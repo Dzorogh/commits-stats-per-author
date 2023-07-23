@@ -36,5 +36,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: echo ${{ secrets.APPCONFIG }} >> appconfig.json
     - run: npm i
     - run: npm start
