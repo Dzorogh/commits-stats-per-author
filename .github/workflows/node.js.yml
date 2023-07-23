@@ -20,19 +20,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Decrypt secrets
+        run: ./decrypt_secret.sh
+        env:
+          SECRETS_PASSPHRASE: ${{ secrets.SECRETS_PASSPHRASE }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
-      env:
-        GITHUB_TOKEN: ${{ secrets.ENV_GITHUB_TOKEN }}
-        GITHUB_ORG: ${{ secrets.ENV_GITHUB_ORG }}
-        GITLAB_TOKEN: ${{ secrets.ENV_GITLAB_TOKEN }}
-        GITLAB_HOST: https://gitlab.com
-        GITLAB_USER_ID: ${{ secrets.ENV_GITLAB_USER_ID }}
-
-        SMTP_HOST: ${{ secrets.ENV_SMTP_HOST }}
-        SMTP_USER: ${{ secrets.ENV_SMTP_USER }}
-        SMTP_PASS: ${{ secrets.ENV_SMTP_PASS }}
-        MAIL_TO: ${{ secrets.ENV_MAIL_TO }}
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
