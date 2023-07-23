@@ -29,9 +29,7 @@ export const mailTemplate = (startAt: Date, repos: Repo[], results: AuthorResult
 const repoTemplate = (repo: Repo) => {
     //language=HTML
     return `
-        <a href="${repo.url}">
-            ${repo.name}
-        </a>
+        <a href="${repo.url}">${repo.name}</a>
     `
 }
 
