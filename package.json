@@ -13,7 +13,7 @@
     "nodemailer": "^6.9.4"
   },
   "scripts": {
-    "start": "ts-node ./src/index.ts"
+    "start": "npx ts-node ./src/index.ts"
   },
   "devDependencies": {
     "@types/nodemailer": "^6.4.8",
