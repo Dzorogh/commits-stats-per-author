@@ -23,17 +23,19 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_ORG: ${{ secrets.GITHUB_ORG }}
-        GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.ENV_GITHUB_TOKEN }}
+        GITHUB_ORG: ${{ secrets.ENV_GITHUB_ORG }}
+        GITLAB_TOKEN: ${{ secrets.ENV_GITLAB_TOKEN }}
         GITLAB_HOST: https://gitlab.com
-        GITLAB_USER_ID: ${{ secrets.GITLAB_USER_ID }}
+        GITLAB_USER_ID: ${{ secrets.ENV_GITLAB_USER_ID }}
 
-        SMTP_HOST: ${{ secrets.SMTP_HOST }}
-        SMTP_USER: ${{ secrets.SMTP_USER }}
-        SMTP_PASS: ${{ secrets.SMTP_PASS }}
-        MAIL_TO: ${{ secrets.MAIL_TO }}
+        SMTP_HOST: ${{ secrets.ENV_SMTP_HOST }}
+        SMTP_USER: ${{ secrets.ENV_SMTP_USER }}
+        SMTP_PASS: ${{ secrets.ENV_SMTP_PASS }}
+        MAIL_TO: ${{ secrets.ENV_MAIL_TO }}
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: echo "${{ secrets.APPCONFIG }}" >> appconfig.json
+    - run: npm i
     - run: npm start
